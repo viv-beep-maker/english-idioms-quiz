@@ -13,7 +13,7 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 
 ## Present a lesson
 
-- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Header typography requests Didot Italic for “English with Vivien” and Didot Roman for “English Idioms Quiz.” It uses locally installed fonts; if Didot is unavailable, Bodoni MT, Georgia, or the browser’s serif font is used. Didot font files are not bundled, so identical Didot rendering across devices requires a separately supplied webfont suitable for the site.
+- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Only the header wordmark and subtitle use self-hosted **Libre Baskerville**: Italic for “English with Vivien” and Regular for “English Idioms Quiz.” Font files are included, so visitors do not need to install the font and no external font service is contacted.
 - On Home, choose **Start Quiz** for a topic. Turn on **Shuffle questions when starting a quiz** first for a random question order. Answer choices keep their A–D order.
 - Shuffling applies only to that quiz session; it never changes the saved editor order. Previous/Next follow the chosen order, and Restart keeps it. Return Home and start again to reshuffle or turn shuffle off for the original order.
 - Each question shows one small landscape picture clue based on an example situation. It is an original vector illustration, not a literal drawing of the idiom. Review questions for the same expression share its clue.
@@ -60,6 +60,7 @@ Local saves belong to your browser and file location, not to the source files. T
 - `starter-data.js`: the first 20 questions across two topics, with bilingual explanations.
 - `more-topics.js`: ten more topics with 100 questions and bilingual explanations.
 - `lesson-support.js`: picture mappings and 261 tailored discussion prompts for 87 expressions.
+- `assets/fonts/`: official Libre Baskerville Regular and Italic font files, the SIL Open Font License, and source details.
 - `assets/brand/`: the mint symbol and full approved logo; keep these with the project when running offline.
 - `assets/clues/`: 87 compact, self-contained SVG illustrations. These work offline and do not make requests to image services.
 - `app.js`: quiz controls, editing, localStorage, validation, and JSON transfer.
