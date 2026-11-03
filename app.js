@@ -1,7 +1,7 @@
 'use strict';
 (() => {
   const $=id=>document.getElementById(id);
-  const {data,clone,pictures,orderedTopics}=window.QuizStore;
+  const {data,clone,pictures,orderedTopics,notify}=window.QuizStore;
   let view='home',activeTopic,index=0,revealed=false,selectedAnswer=null;
   function element(tag, text, className) { const el=document.createElement(tag); if(text!==undefined)el.textContent=text;if(className)el.className=className;return el; }
   function button(label, action, className) {const el=element('button',label,className);el.type='button';el.addEventListener('click',action);return el;}
@@ -21,14 +21,12 @@
     const topic=data.topics.find(t=>t.id===id);
     if(!topic?.questions.length)return;
     activeTopic=clone(topic);
-    if($('shuffleQuestions').checked) {
-      // Fisher–Yates changes only this session, never the saved editor order.
-      for(let i=activeTopic.questions.length-1;i>0;i--) {
-        const j=Math.floor(Math.random()*(i+1));
-        [activeTopic.questions[i],activeTopic.questions[j]]=[activeTopic.questions[j],activeTopic.questions[i]];
-      }
+    // Shuffle a fresh copy on every topic start, leaving saved content untouched.
+    for(let i=activeTopic.questions.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [activeTopic.questions[i],activeTopic.questions[j]]=[activeTopic.questions[j],activeTopic.questions[i]];
     }
-    $('quizOrder').textContent=$('shuffleQuestions').checked?'Shuffled order':'Original order';
+    $('quizOrder').textContent='Shuffled order';
     index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz();
   }
   function renderQuiz() {
