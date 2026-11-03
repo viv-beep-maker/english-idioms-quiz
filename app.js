@@ -43,6 +43,7 @@
       const wrong=chosen && i!==q.correct;
       const el=button('',()=>{
         selectedAnswer=i;
+        if(i===q.correct)revealed=true;
         renderQuiz();
         $('answers').children[i].focus();
       },'answer'+(correct?' correct':'')+(wrong?' wrong':''));
