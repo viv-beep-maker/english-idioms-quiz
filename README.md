@@ -13,7 +13,7 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 
 ## Present a lesson
 
-- Topic cards are numbered. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header identifies the site as **English with Vivien**.
+- Topic cards are numbered. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface.
 - On Home, choose **Start Quiz** for a topic. Turn on **Shuffle questions when starting a quiz** first for a random question order. Answer choices keep their A–D order.
 - Shuffling applies only to that quiz session; it never changes the saved editor order. Previous/Next follow the chosen order, and Restart keeps it. Return Home and start again to reshuffle or turn shuffle off for the original order.
 - Each question shows one small landscape picture clue based on an example situation. It is an original vector illustration, not a literal drawing of the idiom. Review questions for the same expression share its clue.
@@ -56,10 +56,11 @@ Local saves belong to your browser and file location, not to the source files. T
 ## Project files
 
 - `index.html`: home, classroom screen, editor, and question form.
-- `styles.css`: responsive lavender, cream, and navy design.
+- `styles.css`: responsive mint-and-cream design with dark readable text.
 - `starter-data.js`: the first 20 questions across two topics, with bilingual explanations.
 - `more-topics.js`: ten more topics with 100 questions and bilingual explanations.
 - `lesson-support.js`: picture mappings and 261 tailored discussion prompts for 87 expressions.
+- `assets/brand/`: the mint symbol and full approved logo; keep these with the project when running offline.
 - `assets/clues/`: 87 compact, self-contained SVG illustrations. These work offline and do not make requests to image services.
 - `app.js`: quiz controls, editing, localStorage, validation, and JSON transfer.
 - `README.md`: these instructions.
