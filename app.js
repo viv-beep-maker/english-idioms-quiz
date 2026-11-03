@@ -1,6 +1,16 @@
 'use strict';
 (() => {
   const $ = id => document.getElementById(id);
+  const supportEntries=Object.entries(window.LESSON_SUPPORT);
+  const pictures=new Map(supportEntries.map(([,support])=>[support.picture,support]));
+  function lessonDefaults(idiom) {
+    const match=supportEntries.find(([expression])=>expression.toLowerCase()===String(idiom).trim().toLowerCase());
+    return match?.[1] || {picture:'clue-042',discussion:[
+      'Describe a real situation from your life where you could use this expression. What happened?',
+      'Imagine a friend is in a situation that fits this expression. What would you say to them?',
+      'What advice or opinion would you give about a situation that fits this expression, and why?'
+    ]};
+  }
   const KEY = 'english-idioms-quiz-v1';
   const clone = value => JSON.parse(JSON.stringify(value));
   const uid = () => globalThis.crypto?.randomUUID?.() || `id-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -32,7 +42,10 @@
         if (new Set(options.map(v=>v.toLowerCase())).size !== 4) fail(`${label}: answers must be different.`);
         if (!Number.isInteger(q.correct) || q.correct < 0 || q.correct > 3) fail(`${label}: correct must be 0, 1, 2, or 3 (A–D).`);
         if (!Array.isArray(q.examples) || q.examples.length !== 2) fail(`${label}: exactly two examples are required.`);
-        return {id:qid,prompt:text(q.prompt,1000,`${label}: question`),options,correct:q.correct,idiom:text(q.idiom,200,`${label}: idiom`),definition:text(q.definition,1000,`${label}: definition`),korean:text(q.korean,1000,`${label}: Korean meaning`),examples:q.examples.map(v=>text(v,1000,`${label}: example`))};
+        const idiom=text(q.idiom,200,`${label}: idiom`),defaults=lessonDefaults(idiom);
+        if(q.picture!==undefined && !pictures.has(q.picture))fail(`${label}: choose a valid built-in picture clue.`);
+        if(q.discussion!==undefined && (!Array.isArray(q.discussion)||q.discussion.length!==3))fail(`${label}: exactly three discussion questions are required.`);
+        return {id:qid,prompt:text(q.prompt,1000,`${label}: question`),options,correct:q.correct,idiom,definition:text(q.definition,1000,`${label}: definition`),korean:text(q.korean,1000,`${label}: Korean meaning`),examples:q.examples.map(v=>text(v,1000,`${label}: example`)),picture:q.picture??defaults.picture,discussion:(q.discussion??defaults.discussion).map(v=>text(v,1200,`${label}: discussion question`))};
       })};
     })};
   }
@@ -75,10 +88,15 @@
     if(name==='home')renderHome(); if(name==='editor')renderEditor();
     window.scrollTo(0,0);
   }
+  function orderedTopics() {
+    const first=['everyday-life','workplace','competition'];
+    const rank=id=>first.includes(id)?first.indexOf(id):first.length;
+    return [...data.topics].sort((a,b)=>rank(a.id)-rank(b.id));
+  }
   function renderHome() {
     $('topicCount').textContent=`${data.topics.length} topic${data.topics.length===1?'':'s'}`;
-    $('topics').replaceChildren(...data.topics.map(t=>{
-      const card=element('article',undefined,'topic-card');card.append(element('div','Aa','topic-art'),element('p','EXPLORE A TOPIC','eyebrow'),element('h2',t.name),element('p',`${t.questions.length} questions · Discuss at your own pace`));
+    $('topics').replaceChildren(...orderedTopics().map((t,i)=>{
+      const card=element('article',undefined,'topic-card');card.append(element('span',String(i+1),'topic-number'),element('p','EXPLORE A TOPIC','eyebrow'),element('h2',t.name));
       const start=button('Start Quiz →',()=>startQuiz(t.id),'primary');start.disabled=!t.questions.length;card.append(start);return card;
     }));
   }
@@ -101,6 +119,11 @@
     $('progress').textContent=`Question ${index+1} of ${activeTopic.questions.length}`;
     $('progressBar').max=activeTopic.questions.length;$('progressBar').value=index+1;
     $('question').textContent=q.prompt;
+    const picture=pictures.get(q.picture);
+    $('pictureClue').src=`assets/clues/${q.picture}.svg`;
+    $('pictureClue').alt=picture.alt;
+    $('discussionInstruction').textContent=`Try to use “${q.idiom}” in each answer. You can share an imagined example if you prefer.`;
+    $('discussionQuestions').replaceChildren(...q.discussion.map(prompt=>element('li',prompt)));
     $('answers').replaceChildren(...q.options.map((option,i)=>{
       const chosen=selectedAnswer===i;
       const correct=i===q.correct && (revealed||chosen);
@@ -139,7 +162,7 @@
   });
   function editorTopic(){return data.topics.find(t=>t.id===$('editorTopic').value)||data.topics[0];}
   function renderEditor(selected=$('editorTopic').value) {
-    $('editorTopic').replaceChildren(...data.topics.map(t=>{const option=element('option',t.name);option.value=t.id;return option;}));
+    $('editorTopic').replaceChildren(...orderedTopics().map(t=>{const option=element('option',t.name);option.value=t.id;return option;}));
     if(data.topics.some(t=>t.id===selected))$('editorTopic').value=selected;
     const topic=editorTopic();
     $('questionList').replaceChildren(...topic.questions.map((q,i)=>{
@@ -150,9 +173,29 @@
   }
   $('editorTopic').onchange=()=>renderEditor();
   $('addTopic').onclick=()=>{const value=prompt('New topic name (up to 100 characters):');if(value===null)return;const next=clone(data),id=uid();next.topics.push({id,name:value.trim(),questions:[]});if(commit(next))renderEditor(id);};
-  function openQuestion(q){editingId=q?.id||null;$('questionForm').reset();$('formError').textContent='';$('formTitle').textContent=q?'Edit question':'Add question';if(q){for(const name of ['prompt','idiom','definition','korean','correct'])$('questionForm').elements[name].value=q[name];q.options.forEach((v,i)=>$('questionForm').elements[`option${i}`].value=v);q.examples.forEach((v,i)=>$('questionForm').elements[`example${i}`].value=v);} $('questionDialog').showModal();}
+  function updatePicturePreview(){
+    const key=$('pictureSelect').value;
+    $('picturePreview').src=`assets/clues/${key}.svg`;
+    $('picturePreview').alt=pictures.get(key).alt;
+  }
+  $('pictureSelect').replaceChildren(...[...pictures].map(([key,support])=>{
+    const option=element('option',support.alt);option.value=key;return option;
+  }));
+  $('pictureSelect').onchange=updatePicturePreview;
+  function openQuestion(q){
+    editingId=q?.id||null;$('questionForm').reset();$('formError').textContent='';$('formTitle').textContent=q?'Edit question':'Add question';
+    if(q){
+      for(const name of ['prompt','idiom','definition','korean','correct'])$('questionForm').elements[name].value=q[name];
+      q.options.forEach((v,i)=>$('questionForm').elements[`option${i}`].value=v);
+      q.examples.forEach((v,i)=>$('questionForm').elements[`example${i}`].value=v);
+    }
+    const defaults=q||lessonDefaults('');
+    $('pictureSelect').value=defaults.picture;
+    defaults.discussion.forEach((v,i)=>$('questionForm').elements[`discussion${i}`].value=v);
+    updatePicturePreview();$('questionDialog').showModal();
+  }
   $('addQuestion').onclick=()=>openQuestion();$('closeDialog').onclick=()=>$('questionDialog').close();
-  $('questionForm').onsubmit=e=>{e.preventDefault();const fields=new FormData(e.target),q={id:editingId||uid(),correct:Number(fields.get('correct')),options:[0,1,2,3].map(i=>fields.get(`option${i}`)),examples:[0,1].map(i=>fields.get(`example${i}`))};for(const name of ['prompt','idiom','definition','korean'])q[name]=fields.get(name);const next=clone(data),topic=next.topics.find(t=>t.id===editorTopic().id);if(editingId)topic.questions[topic.questions.findIndex(item=>item.id===editingId)]=q;else topic.questions.push(q);try{validate(next);}catch(err){$('formError').textContent=err.message;return;}if(commit(next)){$('questionDialog').close();renderEditor(topic.id);}else $('formError').textContent='Saving failed. See the storage message on the page; your form is still open.';};
+  $('questionForm').onsubmit=e=>{e.preventDefault();const fields=new FormData(e.target),q={id:editingId||uid(),picture:fields.get('picture'),discussion:[0,1,2].map(i=>fields.get(`discussion${i}`)),correct:Number(fields.get('correct')),options:[0,1,2,3].map(i=>fields.get(`option${i}`)),examples:[0,1].map(i=>fields.get(`example${i}`))};for(const name of ['prompt','idiom','definition','korean'])q[name]=fields.get(name);const next=clone(data),topic=next.topics.find(t=>t.id===editorTopic().id);if(editingId)topic.questions[topic.questions.findIndex(item=>item.id===editingId)]=q;else topic.questions.push(q);try{validate(next);}catch(err){$('formError').textContent=err.message;return;}if(commit(next)){$('questionDialog').close();renderEditor(topic.id);}else $('formError').textContent='Saving failed. See the storage message on the page; your form is still open.';};
   $('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=element('a');a.href=url;a.download='english-idioms-quiz.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Export requested. Keep the JSON file as a backup; it contains all topics and questions.');};
   $('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>5*1024*1024)throw new Error('Choose a JSON file smaller than 5 MB.');let raw;try{raw=JSON.parse(await file.text());}catch{throw new Error('This file is not valid JSON. Choose a quiz JSON file created with Export JSON.');}const next=validate(raw);next.contentRevision=contentRevision;if(confirm('Import replaces all current topics and questions. Have you exported a backup? Continue?')){if(commit(next)){renderEditor();notify('Imported successfully and saved in this browser.');}}}catch(err){notify(`Import failed: ${err.message} Your current quiz has not changed.`);}finally{e.target.value='';}};
   show('home');
