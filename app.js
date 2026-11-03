@@ -15,7 +15,7 @@
     };
     if (!raw || raw.version !== 1 || !Array.isArray(raw.topics) || raw.topics.length < 1 || raw.topics.length > 100) fail('Use a version 1 quiz file with 1–100 topics. Export a quiz to see the format.');
     const ids = new Set(), names = new Set();
-    return {version:1,topics:raw.topics.map((t,ti) => {
+    return {version:1,contentRevision:raw.contentRevision===1?1:0,topics:raw.topics.map((t,ti) => {
       if (!t || typeof t !== 'object') fail(`Topic ${ti+1} is invalid.`);
       const id = text(t.id,200,'Topic ID'), name = text(t.name,100,'Topic name');
       if (ids.has(id) || names.has(name.toLowerCase())) fail('Each topic needs a unique ID and name.');
@@ -38,6 +38,16 @@
   }
   try { const saved = localStorage.getItem(KEY); data = saved ? validate(JSON.parse(saved)) : clone(window.STARTER_DATA); }
   catch { data = clone(window.STARTER_DATA); storageBlocked = true; notify('Saved content could not be loaded. Starter questions are shown. Export any work you make; your existing browser data has not been overwritten.'); }
+  // Add this content release once to existing saves, preserving all teacher edits.
+  if (!storageBlocked && data.contentRevision !== 1) {
+    const topic = window.STARTER_DATA.topics.find(t=>t.id==='workplace');
+    if (data.topics.length < 100 && !data.topics.some(t=>t.id===topic.id || t.name.toLowerCase()===topic.name.toLowerCase())) {
+      data.topics.push(clone(topic));
+    }
+    data.contentRevision=1;
+    try { localStorage.setItem(KEY,JSON.stringify(data)); }
+    catch { notify('The updated topics are available for this session, but could not be saved. Export JSON to keep a backup.'); }
+  }
   function commit(candidate) {
     try { candidate = validate(candidate); } catch(e) { notify(e.message); return false; }
     try {
@@ -60,7 +70,20 @@
       const start=button('Start Quiz →',()=>startQuiz(t.id),'primary');start.disabled=!t.questions.length;card.append(start);return card;
     }));
   }
-  function startQuiz(id) { activeTopic=data.topics.find(t=>t.id===id);if(!activeTopic?.questions.length)return;index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz(); }
+  function startQuiz(id) {
+    const topic=data.topics.find(t=>t.id===id);
+    if(!topic?.questions.length)return;
+    activeTopic=clone(topic);
+    if($('shuffleQuestions').checked) {
+      // Fisher–Yates changes only this session, never the saved editor order.
+      for(let i=activeTopic.questions.length-1;i>0;i--) {
+        const j=Math.floor(Math.random()*(i+1));
+        [activeTopic.questions[i],activeTopic.questions[j]]=[activeTopic.questions[j],activeTopic.questions[i]];
+      }
+    }
+    $('quizOrder').textContent=$('shuffleQuestions').checked?'Shuffled order':'Original order';
+    index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz();
+  }
   function renderQuiz() {
     const q=activeTopic.questions[index]; $('quizTopic').textContent=activeTopic.name;
     $('progress').textContent=`Question ${index+1} of ${activeTopic.questions.length}`;
@@ -89,7 +112,7 @@
   }
   function move(delta) { if(view!=='quiz')return;if(index+delta<0)return;if(index+delta>=activeTopic.questions.length){show('complete');return;}index+=delta;revealed=false;selectedAnswer=null;renderQuiz(); }
   function toggle() {if(view==='quiz'){revealed=!revealed;if(!revealed)selectedAnswer=null;renderQuiz();}}
-  function restart(){if(confirm('Restart this quiz from question 1?'))startQuiz(activeTopic.id);}
+  function restart(){if(confirm('Restart this quiz from question 1 in the same order?')){index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz();}}
   $('homeBtn').onclick=$('doneHome').onclick=()=>show('home');$('brand').onclick=e=>{e.preventDefault();show('home');};
   $('editorBtn').onclick=()=>show('editor');$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('reveal').onclick=toggle;$('restart').onclick=$('again').onclick=restart;
   $('backLast').onclick=()=>{revealed=false;selectedAnswer=null;show('quiz');renderQuiz();};
@@ -119,6 +142,6 @@
   $('addQuestion').onclick=()=>openQuestion();$('closeDialog').onclick=()=>$('questionDialog').close();
   $('questionForm').onsubmit=e=>{e.preventDefault();const fields=new FormData(e.target),q={id:editingId||uid(),correct:Number(fields.get('correct')),options:[0,1,2,3].map(i=>fields.get(`option${i}`)),examples:[0,1].map(i=>fields.get(`example${i}`))};for(const name of ['prompt','idiom','definition','korean'])q[name]=fields.get(name);const next=clone(data),topic=next.topics.find(t=>t.id===editorTopic().id);if(editingId)topic.questions[topic.questions.findIndex(item=>item.id===editingId)]=q;else topic.questions.push(q);try{validate(next);}catch(err){$('formError').textContent=err.message;return;}if(commit(next)){$('questionDialog').close();renderEditor(topic.id);}else $('formError').textContent='Saving failed. See the storage message on the page; your form is still open.';};
   $('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=element('a');a.href=url;a.download='english-idioms-quiz.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Export requested. Keep the JSON file as a backup; it contains all topics and questions.');};
-  $('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>5*1024*1024)throw new Error('Choose a JSON file smaller than 5 MB.');let raw;try{raw=JSON.parse(await file.text());}catch{throw new Error('This file is not valid JSON. Choose a quiz JSON file created with Export JSON.');}const next=validate(raw);if(confirm('Import replaces all current topics and questions. Have you exported a backup? Continue?')){if(commit(next)){renderEditor();notify('Imported successfully and saved in this browser.');}}}catch(err){notify(`Import failed: ${err.message} Your current quiz has not changed.`);}finally{e.target.value='';}};
+  $('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>5*1024*1024)throw new Error('Choose a JSON file smaller than 5 MB.');let raw;try{raw=JSON.parse(await file.text());}catch{throw new Error('This file is not valid JSON. Choose a quiz JSON file created with Export JSON.');}const next=validate(raw);next.contentRevision=1;if(confirm('Import replaces all current topics and questions. Have you exported a backup? Continue?')){if(commit(next)){renderEditor();notify('Imported successfully and saved in this browser.');}}}catch(err){notify(`Import failed: ${err.message} Your current quiz has not changed.`);}finally{e.target.value='';}};
   show('home');
 })();

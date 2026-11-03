@@ -13,7 +13,8 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 
 ## Present a lesson
 
-- On Home, choose **Start Quiz** for a topic.
+- On Home, choose **Start Quiz** for a topic. Turn on **Shuffle questions when starting a quiz** first for a random question order. Answer choices keep their A–D order.
+- Shuffling applies only to that quiz session; it never changes the saved editor order. Previous/Next follow the chosen order, and Restart keeps it. Return Home and start again to reshuffle or turn shuffle off for the original order.
 - Read the question and discuss the four answers. Click any answer to check it: correct choices turn green and show “Correct”; incorrect choices turn red and show “Incorrect. Try another answer.” You can try another choice. No scores are recorded. Answer choices also work with Tab followed by Enter or Space.
 - Select **Reveal Answer** to highlight the correct answer and show its definition, Korean meaning, and two English examples. **Hide Answer** conceals them again.
 - Use **Previous** and **Next Question**. Moving between questions always clears the selected answer and hides the explanation again. Hide Answer also clears the selection for a fresh discussion.
@@ -31,7 +32,9 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 5. Use **Add topic** to create a new topic, then add its questions. Empty topics cannot start a quiz.
 6. **Delete** asks for confirmation before removing a question.
 
-The starter topic contains 10 questions covering seven idioms, with meaning, context, and usage questions. Teachers should review new questions to ensure only the selected answer is correct; the editor can check structure but cannot judge language accuracy.
+Two starter topics contain 10 questions each: **Competition & Winning** covers seven idioms, and **Workplace Idioms** covers ten everyday workplace expressions. Both include meaning, context, and usage questions with English definitions, Korean meanings, and two examples per question.
+
+Existing browser saves receive the Workplace topic once when upgrading, without replacing edited questions. A topic already using the same ID or name is preserved. At the 100-topic limit, no topic is added. Imports deliberately replace the content exactly as supplied, and are not supplemented on the next reload. Teachers should review new questions to ensure only the selected answer is correct; the editor can check structure but cannot judge language accuracy.
 
 ## Back up and transfer your questions
 
@@ -46,7 +49,7 @@ Local saves belong to your browser and file location, not to the source files. T
 
 - `index.html`: home, classroom screen, editor, and question form.
 - `styles.css`: responsive lavender, cream, and navy design.
-- `starter-data.js`: the original 10 questions and bilingual explanations.
+- `starter-data.js`: 20 starter questions across two topics, with bilingual explanations.
 - `app.js`: quiz controls, editing, localStorage, validation, and JSON transfer.
 - `README.md`: these instructions.
 

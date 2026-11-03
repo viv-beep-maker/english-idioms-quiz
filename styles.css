@@ -10,3 +10,8 @@
 #answerFeedback{font-size:18px;min-height:1.6em;margin:20px 0 0}
 .feedback-correct{color:#30533e;font-weight:600}
 .feedback-wrong{color:#8c2530;font-weight:600}
+
+.shuffle-option{display:flex;align-items:center;gap:12px;font-size:17px;margin:0}
+.shuffle-option input{width:22px;height:22px;margin:0;accent-color:var(--purple)}
+.shuffle-hint{font-size:14px;color:var(--muted);margin:8px 0 24px}
+#quizOrder{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
