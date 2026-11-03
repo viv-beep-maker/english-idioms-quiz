@@ -26,7 +26,6 @@
       const j=Math.floor(Math.random()*(i+1));
       [activeTopic.questions[i],activeTopic.questions[j]]=[activeTopic.questions[j],activeTopic.questions[i]];
     }
-    $('quizOrder').textContent='Shuffled order';
     index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz();
   }
   function renderQuiz() {
