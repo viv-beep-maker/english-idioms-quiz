@@ -13,7 +13,7 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 
 ## Present a lesson
 
-- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Only the header wordmark and subtitle use self-hosted **Lora**: medium-weight Italic (500) for “English with Vivien” and Regular (400) for “English Idioms Quiz.” Font files are included, so visitors do not need to install the font and no external font service is contacted.
+- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Only the header wordmark and subtitle use self-hosted **Lora**: medium-weight Italic (500) for “English with Vivien” and Regular (400) for “English Idioms Quiz.” Font files are included, so visitors do not need to install the font and no external font service is contacted. Hangul throughout both pages uses embedded **Pretendard**, with installed **SUIT** as a fallback if Pretendard cannot load. A Unicode range keeps the existing English fonts in place, including Lora in the header.
 - On Home, choose **Start Quiz** for a topic. Questions are automatically shuffled every time you start a topic. There is no shuffle checkbox. Answer choices keep their A–D order.
 - Shuffling applies only to that quiz session; it never changes the saved editor order. Previous/Next follow the chosen order, and Restart keeps it. Return Home and start any topic again to get a fresh shuffle.
 - Each question shows one small landscape picture clue based on an example situation. It is an original vector illustration, not a literal drawing of the idiom. Review questions for the same expression share its clue.
@@ -67,7 +67,7 @@ Local saves belong to your browser and file location, not to the source files. T
 - `starter-data.js`: the first 20 questions across two topics, with bilingual explanations.
 - `more-topics.js`: ten more topics with 100 questions and bilingual explanations.
 - `lesson-support.js`: picture mappings and 261 tailored discussion prompts for 87 expressions.
-- `assets/fonts/`: official Lora Regular and Italic font files, the SIL Open Font License, and source details.
+- `assets/fonts/`: official Lora Regular/Italic and Pretendard Variable font files, their SIL Open Font Licenses, and source details.
 - `assets/brand/`: the mint symbol and full approved logo; keep these with the project when running offline.
 - `assets/clues/`: 87 compact, self-contained SVG illustrations. These work offline and do not make requests to image services.
 - `app.js`: public quiz controls and presentation only.
