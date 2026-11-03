@@ -61,12 +61,10 @@
   function move(delta) { if(view!=='quiz')return;if(index+delta<0)return;if(index+delta>=activeTopic.questions.length){show('complete');return;}index+=delta;revealed=false;selectedAnswer=null;renderQuiz(); }
   function toggle() {if(view==='quiz'){revealed=!revealed;if(!revealed)selectedAnswer=null;renderQuiz();}}
   function restart(){if(confirm('Restart this quiz from question 1 in the same order?')){index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz();}}
-  $('homeBtn').onclick=$('doneHome').onclick=()=>show('home');$('brand').onclick=e=>{e.preventDefault();show('home');};
+  $('doneHome').onclick=()=>show('home');$('brand').onclick=e=>{e.preventDefault();show('home');};
   $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('reveal').onclick=toggle;$('restart').onclick=$('again').onclick=restart;
   $('backLast').onclick=()=>{revealed=false;selectedAnswer=null;show('quiz');renderQuiz();};
   async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else notify('Fullscreen is unavailable in this browser. On Windows, try F11.');}catch{notify('Fullscreen could not start. On Windows, try F11.');}}
-  $('fullscreenBtn').onclick=fullscreen;
-  document.addEventListener('fullscreenchange',()=>{$('fullscreenBtn').textContent=document.fullscreenElement?'⛶ Exit fullscreen':'⛶ Fullscreen';});
   document.addEventListener('keydown',e=>{
     if(e.altKey||e.ctrlKey||e.metaKey||e.repeat||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
     if(e.key.toLowerCase()==='f'){e.preventDefault();fullscreen();}
