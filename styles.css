@@ -153,7 +153,7 @@ legend{font-size:var(--size-body);font-weight:600}
 #notice{background:var(--mint-soft);padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:var(--size-detail);margin-bottom:16px;overflow-wrap:break-word}
 footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last baseline;gap:20px 28px;border-top:1px solid var(--border);padding:22px 5%;color:var(--muted);font-size:var(--size-secondary)}
 .footer-brand{display:flex;align-items:center;gap:10px;color:var(--mint);font-family:var(--font-english)}
-.footer-brand img{display:block;flex:none;border-radius:6px;object-fit:contain}
+.footer-brand img{display:block;width:56px;height:56px;flex:none;border-radius:6px;object-fit:contain}
 .footer-wordmark{display:flex;flex-direction:column;gap:2px;min-width:0}
 .footer-brand-name{font-family:var(--font-display);font-style:normal;font-synthesis:none;font-optical-sizing:auto;font-size:var(--size-section);font-weight:500;line-height:1.4}
 .footer-brand-line{display:flex;align-items:baseline;gap:12px;min-width:0}
@@ -213,4 +213,5 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
   fieldset{padding:12px}
   #picturePreviewWindow{--clue-max-height:144px}
   footer{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px;padding:24px 16px 20px}
+  .footer-brand img{width:54px;height:54px}
 }
