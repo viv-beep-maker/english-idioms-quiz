@@ -65,19 +65,21 @@ nav{display:flex;flex-wrap:wrap;gap:8px}
 nav button{background:transparent;border-color:transparent}
 .button-link{color:var(--mint);text-decoration:none}
 main{flex:1;width:100%;max-width:1160px;margin-inline:auto;padding:32px 32px 48px}
+#home{max-width:800px;margin-inline:auto}
 .hero{padding:28px 0 32px}
 .eyebrow{font-size:var(--size-secondary);line-height:1.6;letter-spacing:1.4px;font-weight:700;color:var(--mint);margin:0 0 12px}
-.hero h1{margin:0;font-family:var(--font-display);font-style:normal;font-synthesis:none;font-optical-sizing:auto;font-weight:600;letter-spacing:0}
+.hero h1{margin:0;font-family:var(--font-display);font-style:normal;font-synthesis:none;font-optical-sizing:auto;font-size:38px;font-weight:600;line-height:1.15;letter-spacing:0}
 .learning-level{margin:8px 0 0;font-size:var(--size-secondary);font-weight:400;line-height:1.6;color:var(--muted)}
 .section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0}
 .section-heading>div{min-width:0}
 .section-heading>span{font-size:var(--size-secondary);color:var(--muted);flex:none}
 .section-heading>.eyebrow{margin-bottom:8px}
-.topics{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:14px}
-.topic-card{display:grid;grid-template-columns:32px minmax(0,1fr) 144px;align-items:center;gap:20px;min-height:72px;padding:14px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.topics{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:12px}
+.topic-card{display:grid;grid-template-columns:32px minmax(0,1fr) 96px;align-items:center;gap:16px;min-height:68px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
 .topic-number{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--mint-soft);color:var(--mint);font-size:var(--size-secondary);font-weight:600}
-.topic-card h2{min-width:0;font-size:var(--size-section);font-weight:500;line-height:1.4;hyphens:none}
-.topic-card button{width:144px;min-height:44px;margin:0;padding:10px 14px;white-space:nowrap;justify-self:end}
+.topic-card h2{min-width:0;font-size:16px;font-weight:500;line-height:1.4;hyphens:none}
+.topic-card button{width:96px;min-height:44px;margin:0;padding:6px 7px;white-space:nowrap;justify-self:end;border-radius:8px;background:transparent;color:var(--mint);border-color:var(--border);font-size:13px;font-weight:400}
+.topic-card button:hover{background:var(--mint-soft);border-color:var(--mint);color:var(--mint)}
 .quiz-meta{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:8px;font-size:var(--size-secondary)}
 .quiz-meta .eyebrow{margin:0}
 #quizOrder{display:block;color:var(--muted);font-size:var(--size-secondary);margin-top:2px}
@@ -175,8 +177,8 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
   .brand .brand-curator{display:none}
   .brand .brand-tagline{font-size:11px;letter-spacing:0}
   main{padding:16px 16px 32px}
-  .hero{padding:8px 0 16px}
-  .hero h1{font-size:25px}
+  .hero{padding:16px 0 24px}
+  .hero h1{font-size:29px}
   h2,h3{font-weight:500}
   .eyebrow{letter-spacing:1px;margin-bottom:10px}
   .section-heading{gap:12px;margin:12px 0 16px}
@@ -184,7 +186,7 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
   .topic-card{grid-template-columns:16px minmax(0,1fr) 88px;gap:10px;min-height:68px;padding:10px 14px}
   .topic-number{width:16px;height:24px;border-radius:0;background:transparent;color:var(--muted);font-weight:400}
   .topic-card h2{font-size:16px}
-  .topic-card button{width:88px;height:44px;padding:6px 7px;border-radius:8px;font-size:13px;font-weight:500}
+  .topic-card button{width:88px;height:44px}
   .quiz-meta{gap:12px;margin-bottom:8px;align-items:start}
   progress{margin-bottom:16px}
   .question-card{padding:16px}
