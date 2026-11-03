@@ -96,8 +96,8 @@
   function renderHome() {
     $('topicCount').textContent=`${data.topics.length} topic${data.topics.length===1?'':'s'}`;
     $('topics').replaceChildren(...orderedTopics().map((t,i)=>{
-      const card=element('article',undefined,'topic-card');card.append(element('span',String(i+1),'topic-number'),element('p','EXPLORE A TOPIC','eyebrow'),element('h2',t.name));
-      const start=button('Start Quiz →',()=>startQuiz(t.id),'primary');start.disabled=!t.questions.length;card.append(start);return card;
+      const card=element('article',undefined,'topic-card');card.append(element('span',String(i+1),'topic-number'),element('h2',t.name));
+      const start=button('Start Quiz →',()=>startQuiz(t.id),'primary');start.setAttribute('aria-label',`Start Quiz: ${t.name}`);start.disabled=!t.questions.length;card.append(start);return card;
     }));
   }
   function startQuiz(id) {
