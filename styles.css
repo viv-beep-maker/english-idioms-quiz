@@ -100,9 +100,6 @@ progress{display:block;width:100%;height:5px;accent-color:var(--mint);margin:0 0
 .answer.wrong .letter{background:#ab3f49;color:white}
 .correct-tag,.wrong-tag{font-size:var(--size-secondary);font-weight:700;justify-self:end}
 .correct-tag{color:#30533e}.wrong-tag{color:#8c2530}
-#answerFeedback{font-size:var(--size-body);min-height:1.6em;margin:14px 0 0}
-#answerFeedback:empty{min-height:0;margin:0}
-.feedback-correct{color:#30533e;font-weight:600}.feedback-wrong{color:#8c2530;font-weight:600}
 .explanation{margin-top:20px;border-top:1px solid var(--border);padding-top:16px;font-size:var(--size-detail)}
 .explanation .eyebrow{margin-bottom:8px}
 #idiom{font-size:var(--size-idiom);font-weight:600;line-height:1.4;margin-bottom:10px}
@@ -154,7 +151,7 @@ legend{font-size:var(--size-body);font-weight:600}
 #picturePreviewWindow{--clue-max-height:170px;max-width:min(100%,calc(var(--clue-max-height) * var(--clue-ratio,1.5)));margin:12px auto}
 #pictureSelect{max-width:100%}
 #notice{background:var(--mint-soft);padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:var(--size-detail);margin-bottom:16px;overflow-wrap:break-word}
-footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:20px 28px;border-top:1px solid var(--border);padding:22px 5%;color:var(--muted);font-size:var(--size-secondary)}
+footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last baseline;gap:20px 28px;border-top:1px solid var(--border);padding:22px 5%;color:var(--muted);font-size:var(--size-secondary)}
 .footer-brand{display:flex;align-items:center;gap:10px;color:var(--mint);font-family:var(--font-english)}
 .footer-brand img{display:block;flex:none;border-radius:6px;object-fit:contain}
 .footer-wordmark{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -218,6 +215,6 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;g
   .form-options{grid-template-columns:minmax(0,1fr)}
   fieldset{padding:12px}
   #picturePreviewWindow{--clue-max-height:144px}
-  footer{grid-template-columns:minmax(0,1fr);gap:16px;padding:24px 16px 20px}
+  footer{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px;padding:24px 16px 20px}
   .footer-wordmark .footer-curator{font-size:11px}
 }
