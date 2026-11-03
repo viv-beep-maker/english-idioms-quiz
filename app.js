@@ -139,7 +139,7 @@
       if(wrong)el.append(element('span','✕ INCORRECT','wrong-tag'));
       return el;
     }));
-    $('answerFeedback').textContent=selectedAnswer===null?'Choose an answer to check it, or reveal the answer together.':selectedAnswer===q.correct?'Correct! Well done.':'Incorrect. Try another answer.';
+    $('answerFeedback').textContent=selectedAnswer===null?'':selectedAnswer===q.correct?'Correct! Well done.':'Incorrect. Try another answer.';
     $('answerFeedback').className=selectedAnswer===null?'':selectedAnswer===q.correct?'feedback-correct':'feedback-wrong';
     $('explanation').hidden=!revealed; $('idiom').textContent=q.idiom;$('definition').textContent=q.definition;$('korean').textContent=q.korean;$('examples').replaceChildren(...q.examples.map(ex=>element('p',`e.g. ${ex.replace(/^\s*e\.g\.\s*/i,'')}`)));
     $('reveal').textContent=revealed?'Hide Answer':'Reveal Answer';$('reveal').setAttribute('aria-expanded',String(revealed));$('reveal').setAttribute('aria-controls','explanation');

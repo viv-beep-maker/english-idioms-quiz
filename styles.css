@@ -14,7 +14,7 @@
 .brand-copy{display:flex;flex-direction:column;gap:3px}
 .brand-name{font-family:"Libre Baskerville",Georgia,serif;font-style:italic;font-synthesis:none;font-size:25px;font-weight:400;line-height:1.2;white-space:nowrap}
 .brand small{font-family:"Libre Baskerville",Georgia,serif;font-style:normal;font-synthesis:none;font-size:11px;letter-spacing:1.4px;color:var(--muted);font-weight:400}
-nav{display:flex;gap:8px}nav button{background:transparent;border-color:transparent;font-size:14px}main{max-width:1160px;margin:auto;padding:40px 32px 70px;min-height:80vh}.hero{padding:36px 0 50px}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:750;color:var(--mint)}h1{font-family:Georgia,serif;font-size:clamp(36px,5vw,62px);line-height:1.13;font-weight:500;letter-spacing:-1.5px;margin:20px 0}h2{font-size:24px;margin:0}.intro{font-size:19px;color:var(--muted);line-height:1.8}.pill{display:inline-block;background:var(--mint-soft);padding:6px 14px;border-radius:30px;color:#315d53;font-size:13px;margin-top:10px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:16px 0 24px}.section-heading>span{font-size:14px;color:var(--muted)}.topics{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:12px}
+nav{display:flex;gap:8px}nav button{background:transparent;border-color:transparent;font-size:14px}main{max-width:1160px;margin:auto;padding:40px 32px 70px;min-height:80vh}.hero{padding:36px 0 50px}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:750;color:var(--mint)}h1{font-family:Georgia,serif;font-size:clamp(36px,5vw,62px);line-height:1.13;font-weight:500;letter-spacing:-1.5px;margin:20px 0}h2{font-size:24px;margin:0}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:16px 0 24px}.section-heading>span{font-size:14px;color:var(--muted)}.topics{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:12px}
 .topic-card{display:grid;grid-template-columns:44px minmax(0,1fr) 152px;align-items:center;gap:22px;min-height:88px;padding:16px 24px;background:white;border:1px solid var(--border);border-radius:12px}
 .topic-number{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--mint-soft);color:var(--mint);font-size:23px}
 .topic-card h2{min-width:0;font-family:Georgia,serif;font-size:26px;line-height:1.35;font-weight:500;overflow-wrap:anywhere}
@@ -29,6 +29,7 @@ nav{display:flex;gap:8px}nav button{background:transparent;border-color:transpar
 .answer.correct:hover{border-color:#477760;background:#edf6ee}
 .wrong-tag{font-size:12px;font-weight:700;margin-left:auto;color:#8c2530}
 #answerFeedback{font-size:18px;min-height:1.6em;margin:20px 0 0}
+#answerFeedback:empty{min-height:0;margin:0}
 .feedback-correct{color:#30533e;font-weight:600}
 .feedback-wrong{color:#8c2530;font-weight:600}
 
