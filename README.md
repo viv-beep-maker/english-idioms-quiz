@@ -26,6 +26,12 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 - The public header has no Home or Fullscreen buttons. Click the brand to return to the topic menu. Use **F** to toggle fullscreen, or **F11** on Windows; **Esc** exits browser fullscreen.
 - Keyboard: **← / →** move between questions; **Space** reveals/hides the answer; **F** toggles fullscreen. Shortcuts pause when typing or editing. Space activates a focused button normally; click the question background to use Space for reveal again.
 
+## Responsive type and spacing
+
+`styles.css` centralizes sizes as `--size-page`, `--size-section`, `--size-idiom`, `--size-body`, `--size-detail`, and `--size-secondary`. At 750px and below, page titles switch from 28px to 23px, section headings from 18px to 17px, expression titles from 17px to 16px, and detailed discussion/help text from 14px to 13px. Definitions, examples and Korean translations stay at 14px; secondary text stays at 12px.
+
+Mobile uses 1.6 body line height, 16px card side padding, and 12–14px card gaps. The Reveal Answer button occupies its own row above Previous/Next. Interactive controls are at least 44px tall. Mobile form inputs use 16px text to avoid iOS focus zoom; this does not change the 14px reading size of translations and examples. Whole words wrap naturally with emergency wrapping for unusually long strings. Fonts and colors keep the same roles and palette.
+
 ## Edit questions without coding
 
 The teacher page is a separate editing interface, not an authenticated administrator area. Anyone who knows its address can open it. Its `noindex` metadata requests that search engines not index it; this does not restrict access. Changes affect only the editing browser, not other visitors. Only people with repository write access can publish changes to the shared website. Do not treat the teacher URL as a password.
