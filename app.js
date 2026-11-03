@@ -4,7 +4,7 @@
   const KEY = 'english-idioms-quiz-v1';
   const clone = value => JSON.parse(JSON.stringify(value));
   const uid = () => globalThis.crypto?.randomUUID?.() || `id-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  let data, view = 'home', activeTopic, index = 0, revealed = false, editingId = null;
+  let data, view = 'home', activeTopic, index = 0, revealed = false, selectedAnswer = null, editingId = null;
   let storageBlocked = false;
   function notify(message) { $('notice').textContent = message; $('notice').hidden = false; }
   function validate(raw) {
@@ -60,23 +60,39 @@
       const start=button('Start Quiz →',()=>startQuiz(t.id),'primary');start.disabled=!t.questions.length;card.append(start);return card;
     }));
   }
-  function startQuiz(id) { activeTopic=data.topics.find(t=>t.id===id);if(!activeTopic?.questions.length)return;index=0;revealed=false;show('quiz');renderQuiz(); }
+  function startQuiz(id) { activeTopic=data.topics.find(t=>t.id===id);if(!activeTopic?.questions.length)return;index=0;revealed=false;selectedAnswer=null;show('quiz');renderQuiz(); }
   function renderQuiz() {
     const q=activeTopic.questions[index]; $('quizTopic').textContent=activeTopic.name;
     $('progress').textContent=`Question ${index+1} of ${activeTopic.questions.length}`;
     $('progressBar').max=activeTopic.questions.length;$('progressBar').value=index+1;
     $('question').textContent=q.prompt;
-    $('answers').replaceChildren(...q.options.map((option,i)=>{const el=element('div',undefined,'answer'+(revealed&&i===q.correct?' correct':''));el.append(element('span','ABCD'[i],'letter'),element('span',option));if(revealed&&i===q.correct)el.append(element('span','✓ CORRECT','correct-tag'));return el;}));
+    $('answers').replaceChildren(...q.options.map((option,i)=>{
+      const chosen=selectedAnswer===i;
+      const correct=i===q.correct && (revealed||chosen);
+      const wrong=chosen && i!==q.correct;
+      const el=button('',()=>{
+        selectedAnswer=i;
+        renderQuiz();
+        $('answers').children[i].focus();
+      },'answer'+(correct?' correct':'')+(wrong?' wrong':''));
+      el.setAttribute('aria-pressed',String(chosen));
+      el.append(element('span','ABCD'[i],'letter'),element('span',option));
+      if(correct)el.append(element('span','✓ CORRECT','correct-tag'));
+      if(wrong)el.append(element('span','✕ INCORRECT','wrong-tag'));
+      return el;
+    }));
+    $('answerFeedback').textContent=selectedAnswer===null?'Choose an answer to check it, or reveal the answer together.':selectedAnswer===q.correct?'Correct! Well done.':'Incorrect. Try another answer.';
+    $('answerFeedback').className=selectedAnswer===null?'':selectedAnswer===q.correct?'feedback-correct':'feedback-wrong';
     $('explanation').hidden=!revealed; $('idiom').textContent=q.idiom;$('definition').textContent=q.definition;$('korean').textContent=q.korean;$('examples').replaceChildren(...q.examples.map(ex=>element('li',ex)));
     $('reveal').textContent=revealed?'Hide Answer':'Reveal Answer';$('reveal').setAttribute('aria-expanded',String(revealed));$('reveal').setAttribute('aria-controls','explanation');
     $('prev').disabled=index===0;$('next').textContent=index===activeTopic.questions.length-1?'Finish Quiz →':'Next Question →';
   }
-  function move(delta) { if(view!=='quiz')return;if(index+delta<0)return;if(index+delta>=activeTopic.questions.length){show('complete');return;}index+=delta;revealed=false;renderQuiz(); }
-  function toggle() {if(view==='quiz'){revealed=!revealed;renderQuiz();}}
+  function move(delta) { if(view!=='quiz')return;if(index+delta<0)return;if(index+delta>=activeTopic.questions.length){show('complete');return;}index+=delta;revealed=false;selectedAnswer=null;renderQuiz(); }
+  function toggle() {if(view==='quiz'){revealed=!revealed;if(!revealed)selectedAnswer=null;renderQuiz();}}
   function restart(){if(confirm('Restart this quiz from question 1?'))startQuiz(activeTopic.id);}
   $('homeBtn').onclick=$('doneHome').onclick=()=>show('home');$('brand').onclick=e=>{e.preventDefault();show('home');};
   $('editorBtn').onclick=()=>show('editor');$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('reveal').onclick=toggle;$('restart').onclick=$('again').onclick=restart;
-  $('backLast').onclick=()=>{revealed=false;show('quiz');renderQuiz();};
+  $('backLast').onclick=()=>{revealed=false;selectedAnswer=null;show('quiz');renderQuiz();};
   async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else notify('Fullscreen is unavailable in this browser. On Windows, try F11.');}catch{notify('Fullscreen could not start. On Windows, try F11.');}}
   $('fullscreenBtn').onclick=fullscreen;
   document.addEventListener('fullscreenchange',()=>{$('fullscreenBtn').textContent=document.fullscreenElement?'⛶ Exit fullscreen':'⛶ Fullscreen';});

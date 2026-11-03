@@ -14,9 +14,9 @@ You do not need a terminal or any commands. On tablets, use a browser that suppo
 ## Present a lesson
 
 - On Home, choose **Start Quiz** for a topic.
-- Read the question and discuss the four answers. Clicking an answer does not reveal anything or record a score.
+- Read the question and discuss the four answers. Click any answer to check it: correct choices turn green and show “Correct”; incorrect choices turn red and show “Incorrect. Try another answer.” You can try another choice. No scores are recorded. Answer choices also work with Tab followed by Enter or Space.
 - Select **Reveal Answer** to highlight the correct answer and show its definition, Korean meaning, and two English examples. **Hide Answer** conceals them again.
-- Use **Previous** and **Next Question**. Moving between questions always hides the answer again.
+- Use **Previous** and **Next Question**. Moving between questions always clears the selected answer and hides the explanation again. Hide Answer also clears the selection for a fresh discussion.
 - The final question has **Finish Quiz**, followed by an end screen where you can revisit the last question, restart, or return home.
 - **Restart quiz** asks for confirmation.
 - Use **Fullscreen** for presenting. Press **Esc** to exit (or F11 on Windows if browser fullscreen is unavailable).
