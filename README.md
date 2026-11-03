@@ -6,17 +6,17 @@ An offline classroom presentation app for adult English learners. No account, su
 
 1. Download this repository (on GitHub: **Code → Download ZIP**).
 2. Right-click the ZIP file and choose **Extract All**.
-3. Open the extracted folder. Keep `index.html`, `styles.css`, `starter-data.js`, `more-topics.js`, `lesson-support.js`, `quiz-store.js`, `app.js`, `teacher.html`, and `editor.js` together, along with the complete `assets` folder.
+3. Open the extracted folder. Keep `index.html`, `styles.css`, `starter-data.js`, `more-topics.js`, `lesson-support.js`, `illustration-art.js`, `quiz-store.js`, `app.js`, `teacher.html`, and `editor.js` together, along with the complete `assets` folder.
 4. **Double-click `index.html`.** It opens in your default browser. Microsoft Edge or Google Chrome is recommended. If needed, right-click it → **Open with → Microsoft Edge**.
 
 You do not need a terminal or any commands. On tablets, use a browser that supports opening local HTML files; alternatively, serve this folder using any ordinary static web server.
 
 ## Present a lesson
 
-- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Only the header wordmark and subtitle use self-hosted **Lora**: medium-weight Italic (500) for “English with Vivien” and Regular (400) for “English Idioms Quiz.” Font files are included, so visitors do not need to install the font and no external font service is contacted. Hangul throughout both pages uses embedded **Pretendard**, with installed **SUIT** as a fallback if Pretendard cannot load. A Unicode range keeps the existing English fonts in place, including Lora in the header.
+- Topics appear as compact, numbered horizontal menu rows, with equal-height Start Quiz buttons aligned on the right. The rows adapt to phones without stacking the buttons below the titles. Everyday Life is set 1, Workplace Idioms is set 2, and Competition & Winning is set 3. The header and footer use the approved **English with Vivien** handwritten V and speech-bubble logo. The same symbol is the browser tab icon, with a mint-and-cream interface. Typography uses three self-hosted families: **DM Sans** for header/brand lettering, navigation and footer branding; **Inter** for English headings, questions, answers, definitions, examples, discussion and editor text; **Pretendard** for Korean translations and other Hangul text. Reusable CSS variables are `--font-brand`, `--font-english`, and `--font-korean`. Hangul-only font coverage lets mixed sentences use Inter (or DM Sans in the brand) for English and Pretendard for Korean. The current italic brand styling is preserved with DM Sans Italic. Regular (400), Medium (500), Semibold (600) and Bold (700) provide emphasis. Fonts load locally as WOFF2 with `font-display: swap`; visitors need no font installation or external font service. The illustrated V logo is image artwork, while all live brand lettering follows the brand font.
 - On Home, choose **Start Quiz** for a topic. Questions are automatically shuffled every time you start a topic. There is no shuffle checkbox. Answer choices keep their A–D order.
 - Shuffling applies only to that quiz session; it never changes the saved editor order. Previous/Next follow the chosen order, and Restart keeps it. Return Home and start any topic again to get a fresh shuffle.
-- Each question shows one small landscape picture clue based on an example situation. It is an original vector illustration, not a literal drawing of the idiom. Review questions for the same expression share its clue.
+- Each question shows one small landscape picture clue based on an example situation. It is a compact, muted editorial illustration with one contextual idea and no written answer hint. It suggests the situation instead of drawing literal idiom wordplay. Review questions for the same expression share its clue.
 - Read the question and discuss the four answers. Click any answer to check it: correct choices turn green and show “Correct”; incorrect choices turn red and show “Incorrect. Try another answer.” You can try another choice. No scores are recorded. Answer choices also work with Tab followed by Enter or Space.
 - Select **Reveal Answer** to highlight the correct answer and show its definition, Korean meaning, and two English examples, each starting with **e.g.** on its own line (no bullets). **Hide Answer** conceals them again.
 - After revealing, **Let’s talk about it** provides three discussion questions for the expression: personal experience, a practical speaking situation, and an opinion. Invite learners to use the target expression in each answer. Learners may invent an example instead of sharing private experiences. Hide Answer hides the discussion too.
@@ -66,10 +66,12 @@ Local saves belong to your browser and file location, not to the source files. T
 - `styles.css`: responsive mint-and-cream design with dark readable text.
 - `starter-data.js`: the first 20 questions across two topics, with bilingual explanations.
 - `more-topics.js`: ten more topics with 100 questions and bilingual explanations.
-- `lesson-support.js`: picture mappings and 261 tailored discussion prompts for 87 expressions.
-- `assets/fonts/`: official Lora Regular/Italic and Pretendard Variable font files, their SIL Open Font Licenses, and source details.
+- `lesson-support.js`: expression mappings and 261 tailored discussion prompts for 87 expressions.
+- `illustration-art.js`: mappings, accessible descriptions, and display coordinates for the 87 editorial clues.
+- `assets/illustrations/`: original editorial illustrations in shared PNG sheets, plus one individual alternative. Only the matching illustration is visible for each question. No image service is contacted at runtime.
+- `assets/fonts/`: DM Sans Regular/Italic, Inter, and Pretendard WOFF2 font files, their SIL Open Font Licenses, and source/conversion checksums.
 - `assets/brand/`: the mint symbol and full approved logo; keep these with the project when running offline.
-- `assets/clues/`: 87 compact, self-contained SVG illustrations. These work offline and do not make requests to image services.
+- `assets/clues/`: legacy SVG files retained for compatibility with already-open older pages; current questions use the editorial art.
 - `app.js`: public quiz controls and presentation only.
 - `README.md`: these instructions.
 

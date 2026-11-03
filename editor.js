@@ -2,7 +2,7 @@
 (() => {
   const $=id=>document.getElementById(id);
   const store=window.QuizStore;
-  const {clone,uid,pictures,lessonDefaults,notify,validate,orderedTopics,contentRevision}=store;
+  const {clone,uid,pictures,lessonDefaults,notify,validate,orderedTopics,contentRevision,renderClue}=store;
   let data=store.data,editingId=null;
   function commit(candidate){
     const saved=store.commit(candidate);
@@ -26,8 +26,7 @@
   $('addTopic').onclick=()=>{const value=prompt('New topic name (up to 100 characters):');if(value===null)return;const next=clone(data),id=uid();next.topics.push({id,name:value.trim(),questions:[]});if(commit(next))renderEditor(id);};
   function updatePicturePreview(){
     const key=$('pictureSelect').value;
-    $('picturePreview').src=`assets/clues/${key}.svg`;
-    $('picturePreview').alt=pictures.get(key).alt;
+    renderClue($('picturePreview'),key);
   }
   $('pictureSelect').replaceChildren(...[...pictures].map(([key,support])=>{
     const option=element('option',support.alt);option.value=key;return option;

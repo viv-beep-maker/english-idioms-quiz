@@ -86,5 +86,16 @@
     const rank=id=>first.includes(id)?first.indexOf(id):first.length;
     return [...data.topics].sort((a,b)=>rank(a.id)-rank(b.id));
   }
-  window.QuizStore={get data(){return data;},clone,uid,pictures,lessonDefaults,notify,validate,commit,orderedTopics,contentRevision};
+  function renderClue(image,key){
+    const art=window.CLUE_ART[key];
+    const frame=image.parentElement;
+    frame.style.setProperty('--clue-ratio',String(art.ratio));
+    frame.style.setProperty('--clue-width',`${art.columns*100}%`);
+    frame.style.setProperty('--clue-height',`${art.rows*100}%`);
+    frame.style.setProperty('--clue-left',`${-art.column*100}%`);
+    frame.style.setProperty('--clue-top',`${-art.row*100}%`);
+    image.src=art.src;
+    image.alt=art.alt;
+  }
+  window.QuizStore={get data(){return data;},clone,uid,pictures,lessonDefaults,notify,validate,commit,orderedTopics,contentRevision,renderClue};
 })();

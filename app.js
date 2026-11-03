@@ -1,7 +1,7 @@
 'use strict';
 (() => {
   const $=id=>document.getElementById(id);
-  const {data,clone,pictures,orderedTopics,notify}=window.QuizStore;
+  const {data,clone,orderedTopics,notify,renderClue}=window.QuizStore;
   let view='home',activeTopic,index=0,revealed=false,selectedAnswer=null;
   function element(tag, text, className) { const el=document.createElement(tag); if(text!==undefined)el.textContent=text;if(className)el.className=className;return el; }
   function button(label, action, className) {const el=element('button',label,className);el.type='button';el.addEventListener('click',action);return el;}
@@ -34,9 +34,7 @@
     $('progress').textContent=`Question ${index+1} of ${activeTopic.questions.length}`;
     $('progressBar').max=activeTopic.questions.length;$('progressBar').value=index+1;
     $('question').textContent=q.prompt;
-    const picture=pictures.get(q.picture);
-    $('pictureClue').src=`assets/clues/${q.picture}.svg`;
-    $('pictureClue').alt=picture.alt;
+    renderClue($('pictureClue'),q.picture);
     $('discussionInstruction').textContent=`Try to use “${q.idiom}” in each answer. You can share an imagined example if you prefer.`;
     $('discussionQuestions').replaceChildren(...q.discussion.map(prompt=>element('li',prompt)));
     $('answers').replaceChildren(...q.options.map((option,i)=>{
