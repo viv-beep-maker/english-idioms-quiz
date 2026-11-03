@@ -1,8 +1,19 @@
+/* Use installed Didot faces without downloading or redistributing font files. */
+@font-face{
+  font-family:"Vivien Didot";
+  src:local("Didot Roman"),local("Didot-Roman"),local("Didot");
+  font-style:normal;font-weight:400;font-display:swap;
+}
+@font-face{
+  font-family:"Vivien Didot";
+  src:local("Didot Italic"),local("Didot-Italic");
+  font-style:italic;font-weight:400;font-display:swap;
+}
 :root{--ink:#253c39;--muted:#526c65;--paper:#faf8f2;--mint:#2e6d63;--mint-soft:#e6f2ec;--border:#d4e2db}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Segoe UI,Arial,sans-serif;font-size:17px;line-height:1.6}button,input,textarea,select{font:inherit}button,.file-button{border:1px solid var(--border);background:white;border-radius:10px;padding:11px 20px;color:var(--ink);cursor:pointer;font-weight:600}button:hover,.file-button:hover{background:var(--mint-soft);border-color:var(--mint)}button:disabled{opacity:.4;cursor:default}.primary{background:var(--mint);color:white;border-color:var(--mint)}.primary:hover{background:#24584f;color:white}:focus-visible{outline:3px solid #aa7c26;outline-offset:4px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 5%;border-bottom:1px solid var(--border);background:var(--paper)}a.brand{display:flex;align-items:center;gap:12px;color:var(--mint);text-decoration:none;flex-shrink:0}
 .brand-mark{display:block;width:64px;height:64px;object-fit:contain;border-radius:12px}
 .brand-copy{display:flex;flex-direction:column;gap:3px}
-.brand-name{font-family:Georgia,serif;font-size:25px;font-weight:600;line-height:1.2;white-space:nowrap}
-.brand small{font-size:11px;letter-spacing:1.4px;color:var(--muted);font-weight:500}
+.brand-name{font-family:"Vivien Didot",Didot,"Bodoni MT",Georgia,serif;font-style:italic;font-synthesis:none;font-size:25px;font-weight:400;line-height:1.2;white-space:nowrap}
+.brand small{font-family:"Vivien Didot",Didot,"Bodoni MT",Georgia,serif;font-style:normal;font-synthesis:none;font-size:11px;letter-spacing:1.4px;color:var(--muted);font-weight:400}
 nav{display:flex;gap:8px}nav button{background:transparent;border-color:transparent;font-size:14px}main{max-width:1160px;margin:auto;padding:40px 32px 70px;min-height:80vh}.hero{padding:36px 0 50px}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:750;color:var(--mint)}h1{font-family:Georgia,serif;font-size:clamp(36px,5vw,62px);line-height:1.13;font-weight:500;letter-spacing:-1.5px;margin:20px 0}h2{font-size:24px;margin:0}.intro{font-size:19px;color:var(--muted);line-height:1.8}.pill{display:inline-block;background:var(--mint-soft);padding:6px 14px;border-radius:30px;color:#315d53;font-size:13px;margin-top:10px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:16px 0 24px}.section-heading>span{font-size:14px;color:var(--muted)}.topics{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:12px}
 .topic-card{display:grid;grid-template-columns:44px minmax(0,1fr) 152px;align-items:center;gap:22px;min-height:88px;padding:16px 24px;background:white;border:1px solid var(--border);border-radius:12px}
 .topic-number{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--mint-soft);color:var(--mint);font-size:23px}
