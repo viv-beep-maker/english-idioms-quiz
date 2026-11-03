@@ -57,7 +57,6 @@ a.brand{display:flex;align-items:center;gap:12px;min-width:0;color:var(--mint);t
 .brand-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
 .brand-topline{display:flex;align-items:baseline;gap:14px;min-width:0}
 .brand-topline .brand-name{flex:none}
-.brand .brand-curator{min-width:0;letter-spacing:0;line-height:1.4}
 .brand .brand-tagline{letter-spacing:0;line-height:1.5}
 .brand-name{font-family:var(--font-display);font-style:normal;font-synthesis:none;font-optical-sizing:auto;font-size:var(--size-page);font-weight:500;line-height:1.2;white-space:nowrap}
 .brand small{font-family:var(--font-english);font-size:var(--size-secondary);font-weight:400;line-height:1.5;letter-spacing:1px;color:var(--muted)}
@@ -158,10 +157,8 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
 .footer-brand img{display:block;flex:none;border-radius:6px;object-fit:contain}
 .footer-wordmark{display:flex;flex-direction:column;gap:2px;min-width:0}
 .footer-brand-name{font-family:var(--font-display);font-style:normal;font-synthesis:none;font-optical-sizing:auto;font-size:var(--size-section);font-weight:500;line-height:1.4}
-.footer-wordmark small{font-family:var(--font-english);font-size:var(--size-secondary);font-weight:400;letter-spacing:.4px}
 .footer-brand-line{display:flex;align-items:baseline;gap:12px;min-width:0}
 .footer-brand-name{white-space:nowrap;flex:none}
-.footer-curator{min-width:0;line-height:1.4}
 .footer-tagline{margin:2px 0 0;font-family:var(--font-english);font-size:var(--size-secondary);color:var(--muted)}
 .footer-contact{min-width:0;font-style:normal;font-size:var(--size-secondary)}
 .footer-contact p{margin:0;color:var(--ink);font-weight:500}
@@ -174,7 +171,6 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
   a.brand{gap:10px}
   .brand-topline{gap:10px}
   .brand-mark{width:48px;height:48px}
-  .brand .brand-curator{display:none}
   .brand .brand-tagline{font-size:11px;letter-spacing:0}
   main{padding:16px 16px 32px}
   .hero{padding:16px 0 24px}
@@ -218,5 +214,4 @@ footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last ba
   fieldset{padding:12px}
   #picturePreviewWindow{--clue-max-height:144px}
   footer{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px;padding:24px 16px 20px}
-  .footer-wordmark .footer-curator{font-size:11px}
 }
