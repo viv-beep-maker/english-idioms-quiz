@@ -2,7 +2,11 @@
 (() => {
   const $ = id => document.getElementById(id);
   const supportEntries=Object.entries(window.LESSON_SUPPORT);
-  const pictures=new Map(supportEntries.map(([,support])=>[support.picture,support]));
+  const pictures=new Map(Object.entries(window.CLUE_ART).map(([key,art])=>[key,{
+    alt:art.alt,
+    expression:art.expression||supportEntries.find(([,support])=>support.picture===key)?.[0]||'',
+    variant:art.variant||'Original scene'
+  }]));
   function lessonDefaults(idiom) {
     const match=supportEntries.find(([expression])=>expression.toLowerCase()===String(idiom).trim().toLowerCase());
     return match?.[1] || {picture:'clue-042',discussion:[
@@ -12,6 +16,7 @@
     ]};
   }
   const KEY = 'english-idioms-quiz-v1';
+  const pictureRevision=window.STARTER_DATA.pictureRevision;
   const clone = value => JSON.parse(JSON.stringify(value));
   const uid = () => globalThis.crypto?.randomUUID?.() || `id-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   let data;
@@ -25,7 +30,7 @@
     };
     if (!raw || raw.version !== 1 || !Array.isArray(raw.topics) || raw.topics.length < 1 || raw.topics.length > 100) fail('Use a version 1 quiz file with 1–100 topics. Export a quiz to see the format.');
     const ids = new Set(), names = new Set();
-    return {version:1,contentRevision:Number.isInteger(raw.contentRevision) && raw.contentRevision>=0 && raw.contentRevision<=2?raw.contentRevision:0,topics:raw.topics.map((t,ti) => {
+    return {version:1,contentRevision:Number.isInteger(raw.contentRevision) && raw.contentRevision>=0 && raw.contentRevision<=2?raw.contentRevision:0,pictureRevision:Number.isInteger(raw.pictureRevision) && raw.pictureRevision>=0 && raw.pictureRevision<=pictureRevision?raw.pictureRevision:0,topics:raw.topics.map((t,ti) => {
       if (!t || typeof t !== 'object') fail(`Topic ${ti+1} is invalid.`);
       const id = text(t.id,200,'Topic ID'), name = text(t.name,100,'Topic name');
       if (ids.has(id) || names.has(name.toLowerCase())) fail('Each topic needs a unique ID and name.');
@@ -43,9 +48,11 @@
         if (!Number.isInteger(q.correct) || q.correct < 0 || q.correct > 3) fail(`${label}: correct must be 0, 1, 2, or 3 (A–D).`);
         if (!Array.isArray(q.examples) || q.examples.length !== 2) fail(`${label}: exactly two examples are required.`);
         const idiom=text(q.idiom,200,`${label}: idiom`),defaults=lessonDefaults(idiom);
+        const questionClue=window.QUESTION_CLUES[id+'/'+qid];
+        const defaultPicture=questionClue?.idiom===idiom?questionClue.picture:defaults.picture;
         if(q.picture!==undefined && !pictures.has(q.picture))fail(`${label}: choose a valid built-in picture clue.`);
         if(q.discussion!==undefined && (!Array.isArray(q.discussion)||q.discussion.length!==3))fail(`${label}: exactly three discussion questions are required.`);
-        return {id:qid,prompt:text(q.prompt,1000,`${label}: question`),options,correct:q.correct,idiom,definition:text(q.definition,1000,`${label}: definition`),korean:text(q.korean,1000,`${label}: Korean meaning`),examples:q.examples.map(v=>text(v,1000,`${label}: example`)),picture:q.picture??defaults.picture,discussion:(q.discussion??defaults.discussion).map(v=>text(v,1200,`${label}: discussion question`))};
+        return {id:qid,prompt:text(q.prompt,1000,`${label}: question`),options,correct:q.correct,idiom,definition:text(q.definition,1000,`${label}: definition`),korean:text(q.korean,1000,`${label}: Korean meaning`),examples:q.examples.map(v=>text(v,1000,`${label}: example`)),picture:q.picture??defaultPicture,discussion:(q.discussion??defaults.discussion).map(v=>text(v,1200,`${label}: discussion question`))};
       })};
     })};
   }
@@ -73,6 +80,23 @@
     }
     catch { notify('The updated topics are available for this session, but could not be saved. Export JSON to keep a backup.'); }
   }
+  // Upgrade only untouched starter questions that still use their old default image.
+  // A separate revision makes this a one-time update, preserving later manual choices.
+  if (!storageBlocked && data.pictureRevision < pictureRevision) {
+    const fields=['prompt','options','correct','idiom','definition','korean','examples','discussion'];
+    for(const topic of data.topics) {
+      const starterTopic=window.STARTER_DATA.topics.find(t=>t.id===topic.id);
+      for(const question of topic.questions) {
+        const clue=window.QUESTION_CLUES[topic.id+'/'+question.id];
+        if(!clue || question.picture!==clue.previousPicture)continue;
+        const original=starterTopic?.questions.find(q=>q.id===question.id);
+        if(original && fields.every(field=>JSON.stringify(question[field])===JSON.stringify(original[field])))question.picture=clue.picture;
+      }
+    }
+    data.pictureRevision=pictureRevision;
+    try { localStorage.setItem(KEY,JSON.stringify(data)); }
+    catch { notify('Updated picture clues are available for this session, but could not be saved. Export JSON to keep a backup.'); }
+  }
   function commit(candidate) {
     try { candidate = validate(candidate); } catch(e) { notify(e.message); return false; }
     try {
@@ -97,5 +121,5 @@
     image.src=art.src;
     image.alt=art.alt;
   }
-  window.QuizStore={get data(){return data;},clone,uid,pictures,lessonDefaults,notify,validate,commit,orderedTopics,contentRevision,renderClue};
+  window.QuizStore={get data(){return data;},clone,uid,pictures,lessonDefaults,notify,validate,commit,orderedTopics,contentRevision,pictureRevision,renderClue};
 })();

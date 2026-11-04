@@ -1,4 +1,4 @@
-/* One distinct editorial illustration per expression. Shared sheets keep downloads modest. */
+/* Editorial clues: expression defaults plus distinct scenes for individual review questions. */
 window.CLUE_ART = {
   "clue-001": {
     "src": "assets/illustrations/editorial-sheet-01.png",
@@ -784,6 +784,568 @@ window.CLUE_ART = {
     "alt": "Two cropped hands prepare food together beside a small recipe card."
   }
 };
+// Context-specific scenes keep review questions visually distinct.
+Object.assign(window.CLUE_ART, {
+  "clue-002": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "give someone a run for their money",
+    "variant": "Team competition",
+    "alt": "Two adult players from opposing small football teams contest a ball closely during a match."
+  },
+  "clue-049": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "on the tip of your tongue",
+    "variant": "Remembering a name",
+    "alt": "At a quiet adult reunion, one adult clearly recognizes another but pauses thoughtfully trying to recall their name."
+  },
+  "clue-088": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "raise the bar",
+    "variant": "Alternative scene",
+    "alt": "A refined adult restaurant server carefully presents a beautifully arranged place setting to a pleased diner; attentive service in a new restaurant sets a higher standard."
+  },
+  "clue-089": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "a level playing field",
+    "variant": "Alternative scene",
+    "alt": "Two adult business applicants, one independent shop owner in a simple apron and one office professional, sit at equal chairs with identical plain application folders on a shared meeting table."
+  },
+  "clue-090": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "give someone a run for their money",
+    "variant": "Individual race",
+    "alt": "Two adult women racing on a track near a finish line; the newcomer in muted sage stays extremely close to the established favorite in dark green, but the favorite is half a step ahead."
+  },
+  "clue-091": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "a piece of cake",
+    "variant": "Alternative scene",
+    "alt": "A calm adult learner in a compact car finishes a simple driving-test parking maneuver while the adult instructor beside them gives a quiet approving gesture."
+  },
+  "clue-092": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "out of the blue",
+    "variant": "Alternative scene",
+    "alt": "A surprised tenant at their doorway receives an unexpectedly favorable rent document from their landlord, two adults and one plain paper."
+  },
+  "clue-093": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "sooner or later",
+    "variant": "Alternative scene",
+    "alt": "A small leak beneath a kitchen sink drips steadily toward an almost-full bucket; a damp patch is beginning to spread."
+  },
+  "clue-094": {
+    "src": "assets/illustrations/editorial-sheet-11.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "cost an arm and a leg",
+    "variant": "Alternative scene",
+    "alt": "An adult car owner looks concerned as a mechanic beside an open car hood shows a very long repair estimate."
+  },
+  "clue-095": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "tighten your belt",
+    "variant": "Alternative scene",
+    "alt": "Two adults cooking a simple meal together at home after cutting household spending."
+  },
+  "clue-096": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "save for a rainy day",
+    "variant": "Alternative scene",
+    "alt": "A cropped adult hand deliberately places a small amount of cash into a plain savings envelope beside one house key, keeping money for future needs."
+  },
+  "clue-097": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "over the moon",
+    "variant": "Alternative scene",
+    "alt": "Two adult grandparents lean warmly toward their first newborn grandchild in a simple bassinet, quietly delighted."
+  },
+  "clue-098": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "on edge",
+    "variant": "Alternative scene",
+    "alt": "An adult shop manager waits tensely beside a tidy counter while an inspector is visible approaching the glass doorway."
+  },
+  "clue-099": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "fed up",
+    "variant": "Alternative scene",
+    "alt": "An adult has been waiting on a phone call for a long time, looking plainly irritated and tired of waiting."
+  },
+  "clue-100": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "hit it off",
+    "variant": "Alternative scene",
+    "alt": "Two new adult roommates immediately enjoying a relaxed friendly conversation beside a single moving box in an otherwise spare apartment."
+  },
+  "clue-101": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "get off on the wrong foot",
+    "variant": "Alternative scene",
+    "alt": "Two adults having an awkward first introduction at an apartment doorway; one offers a tentative greeting and the other looks guarded."
+  },
+  "clue-102": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "lend a hand",
+    "variant": "Alternative scene",
+    "alt": "Two adult neighbors cooperatively carry one small bookcase through an apartment doorway."
+  },
+  "clue-103": {
+    "src": "assets/illustrations/editorial-sheet-12.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "beat around the bush",
+    "variant": "Alternative scene",
+    "alt": "One adult hesitates while trying to ask a friend for a favor at a quiet table, avoiding direct eye contact and making a tentative hand gesture."
+  },
+  "clue-104": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "spill the beans",
+    "variant": "Alternative scene",
+    "alt": "An adult accidentally lets a birthday present be seen by its intended recipient; a second adult notices too late and makes a small startled gesture."
+  },
+  "clue-105": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "ring a bell",
+    "variant": "Alternative scene",
+    "alt": "An adult recognizes a familiar café while examining an old postcard and looking toward a subtly suggested matching café doorway."
+  },
+  "clue-106": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "against the clock",
+    "variant": "Alternative scene",
+    "alt": "Two adult repair workers urgently but calmly restore an open electrical supply panel before an evening event; one checks the remaining time on a wristwatch."
+  },
+  "clue-107": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "time flies",
+    "variant": "Alternative scene",
+    "alt": "A parent quietly marvels at a school-age child wearing a school bag beside several older height marks on a wall."
+  },
+  "clue-108": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "around the clock",
+    "variant": "Alternative scene",
+    "alt": "One adult utility engineer repairs a valve at night under a small work lamp while faint dawn light appears at a window."
+  },
+  "clue-109": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "up in the air",
+    "variant": "Alternative scene",
+    "alt": "An engaged adult couple considers an undecided wedding date at a simple table with one blank calendar and a hovering pencil."
+  },
+  "clue-110": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "sleep on it",
+    "variant": "Alternative scene",
+    "alt": "An adult places a job-offer letter on a bedside table and turns off a bedside lamp, choosing to decide the following day."
+  },
+  "clue-111": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "go with the flow",
+    "variant": "Alternative scene",
+    "alt": "A relaxed adult traveler follows their friend's restaurant choice along a quiet street, using an open relaxed hand gesture."
+  },
+  "clue-112": {
+    "src": "assets/illustrations/editorial-sheet-13.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "a bump in the road",
+    "variant": "Alternative scene",
+    "alt": "An adult in a small workshop notices a briefly delayed delivery while continuing work on a partly assembled cabinet; one missing component lies outlined on the workbench."
+  },
+  "clue-113": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "bite the bullet",
+    "variant": "Alternative scene",
+    "alt": "An adult homeowner authorizes an essential boiler replacement with a repair technician despite the expense."
+  },
+  "clue-114": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "hang in there",
+    "variant": "Alternative scene",
+    "alt": "A tired adult works through a demanding week at a desk while a friend offers quiet encouragement."
+  },
+  "clue-115": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 0,
+    "ratio": 1.5,
+    "expression": "under the weather",
+    "variant": "Alternative scene",
+    "alt": "An adult feeling mildly ill stays home, seated quietly with a tissue while a gym bag remains unused by the door."
+  },
+  "clue-116": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "run-down",
+    "variant": "Alternative scene",
+    "alt": "An exhausted adult after several late nights sits at a desk resting their forehead in one hand, with a closed laptop and untouched cold drink."
+  },
+  "clue-117": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "take it easy",
+    "variant": "Alternative scene",
+    "alt": "Two adults spend a slow weekend sitting on a simple sofa reading quietly and resting at home."
+  },
+  "clue-118": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 2,
+    "row": 1,
+    "ratio": 1.5,
+    "expression": "get the hang of it",
+    "variant": "Alternative scene",
+    "alt": "One adult learner confidently practices parking a compact car neatly between two simple parking cones."
+  },
+  "clue-119": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 0,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "be rusty",
+    "variant": "Alternative scene",
+    "alt": "An adult who has not used Spanish for years pauses thoughtfully while speaking on a phone, with a closed old phrasebook on the table."
+  },
+  "clue-120": {
+    "src": "assets/illustrations/editorial-sheet-14.png",
+    "columns": 3,
+    "rows": 3,
+    "column": 1,
+    "row": 2,
+    "ratio": 1.5,
+    "expression": "by trial and error",
+    "variant": "Alternative scene",
+    "alt": "An adult adjusts a home printer after comparing a small sequence of test pages with progressively improved print alignment."
+  }
+});
+window.QUESTION_CLUES = {
+  "competition/starter-8": {
+    "idiom": "raise the bar",
+    "previousPicture": "clue-001",
+    "picture": "clue-088"
+  },
+  "competition/starter-9": {
+    "idiom": "a level playing field",
+    "previousPicture": "clue-003",
+    "picture": "clue-089"
+  },
+  "competition/starter-10": {
+    "idiom": "give someone a run for their money",
+    "previousPicture": "clue-002",
+    "picture": "clue-090"
+  },
+  "everyday-life/everyday-life-8": {
+    "idiom": "a piece of cake",
+    "previousPicture": "clue-018",
+    "picture": "clue-091"
+  },
+  "everyday-life/everyday-life-9": {
+    "idiom": "out of the blue",
+    "previousPicture": "clue-020",
+    "picture": "clue-092"
+  },
+  "everyday-life/everyday-life-10": {
+    "idiom": "sooner or later",
+    "previousPicture": "clue-022",
+    "picture": "clue-093"
+  },
+  "money-shopping/money-shopping-8": {
+    "idiom": "cost an arm and a leg",
+    "previousPicture": "clue-025",
+    "picture": "clue-094"
+  },
+  "money-shopping/money-shopping-9": {
+    "idiom": "tighten your belt",
+    "previousPicture": "clue-027",
+    "picture": "clue-095"
+  },
+  "money-shopping/money-shopping-10": {
+    "idiom": "save for a rainy day",
+    "previousPicture": "clue-029",
+    "picture": "clue-096"
+  },
+  "feelings/feelings-8": {
+    "idiom": "over the moon",
+    "previousPicture": "clue-032",
+    "picture": "clue-097"
+  },
+  "feelings/feelings-9": {
+    "idiom": "on edge",
+    "previousPicture": "clue-034",
+    "picture": "clue-098"
+  },
+  "feelings/feelings-10": {
+    "idiom": "fed up",
+    "previousPicture": "clue-036",
+    "picture": "clue-099"
+  },
+  "relationships/relationships-8": {
+    "idiom": "hit it off",
+    "previousPicture": "clue-039",
+    "picture": "clue-100"
+  },
+  "relationships/relationships-9": {
+    "idiom": "get off on the wrong foot",
+    "previousPicture": "clue-041",
+    "picture": "clue-101"
+  },
+  "relationships/relationships-10": {
+    "idiom": "lend a hand",
+    "previousPicture": "clue-043",
+    "picture": "clue-102"
+  },
+  "communication/communication-8": {
+    "idiom": "beat around the bush",
+    "previousPicture": "clue-046",
+    "picture": "clue-103"
+  },
+  "communication/communication-9": {
+    "idiom": "spill the beans",
+    "previousPicture": "clue-048",
+    "picture": "clue-104"
+  },
+  "communication/communication-10": {
+    "idiom": "ring a bell",
+    "previousPicture": "clue-050",
+    "picture": "clue-105"
+  },
+  "time-busy-lives/time-busy-lives-8": {
+    "idiom": "against the clock",
+    "previousPicture": "clue-053",
+    "picture": "clue-106"
+  },
+  "time-busy-lives/time-busy-lives-9": {
+    "idiom": "time flies",
+    "previousPicture": "clue-055",
+    "picture": "clue-107"
+  },
+  "time-busy-lives/time-busy-lives-10": {
+    "idiom": "around the clock",
+    "previousPicture": "clue-057",
+    "picture": "clue-108"
+  },
+  "decisions-plans/decisions-plans-8": {
+    "idiom": "up in the air",
+    "previousPicture": "clue-060",
+    "picture": "clue-109"
+  },
+  "decisions-plans/decisions-plans-9": {
+    "idiom": "sleep on it",
+    "previousPicture": "clue-062",
+    "picture": "clue-110"
+  },
+  "decisions-plans/decisions-plans-10": {
+    "idiom": "go with the flow",
+    "previousPicture": "clue-064",
+    "picture": "clue-111"
+  },
+  "challenges/challenges-8": {
+    "idiom": "a bump in the road",
+    "previousPicture": "clue-067",
+    "picture": "clue-112"
+  },
+  "challenges/challenges-9": {
+    "idiom": "bite the bullet",
+    "previousPicture": "clue-069",
+    "picture": "clue-113"
+  },
+  "challenges/challenges-10": {
+    "idiom": "hang in there",
+    "previousPicture": "clue-071",
+    "picture": "clue-114"
+  },
+  "health-rest/health-rest-8": {
+    "idiom": "under the weather",
+    "previousPicture": "clue-074",
+    "picture": "clue-115"
+  },
+  "health-rest/health-rest-9": {
+    "idiom": "run-down",
+    "previousPicture": "clue-076",
+    "picture": "clue-116"
+  },
+  "health-rest/health-rest-10": {
+    "idiom": "take it easy",
+    "previousPicture": "clue-078",
+    "picture": "clue-117"
+  },
+  "learning/learning-8": {
+    "idiom": "get the hang of it",
+    "previousPicture": "clue-081",
+    "picture": "clue-118"
+  },
+  "learning/learning-9": {
+    "idiom": "be rusty",
+    "previousPicture": "clue-083",
+    "picture": "clue-119"
+  },
+  "learning/learning-10": {
+    "idiom": "by trial and error",
+    "previousPicture": "clue-085",
+    "picture": "clue-120"
+  }
+};
+for (const topic of window.STARTER_DATA.topics) {
+  for (const question of topic.questions) {
+    const clue=window.QUESTION_CLUES[topic.id+'/'+question.id];
+    if(clue && clue.idiom===question.idiom)question.picture=clue.picture;
+  }
+}
+window.STARTER_DATA.pictureRevision=1;
 for (const support of Object.values(window.LESSON_SUPPORT)) {
   support.alt=window.CLUE_ART[support.picture].alt;
 }
